@@ -1,0 +1,31 @@
+DROP TABLE user ;	-- 删除表
+CREATE TABLE user(
+	id		INT		AUTO_INCREMENT PRIMARY KEY ,
+	name		VARCHAR(30)	NOT NULL ,
+	password 	VARCHAR(32)	NOT NULL ,
+	age		INT		NOT NULL ,
+	sex		VARCHAR(2)	DEFAULT '男' ,
+	birthday	DATE 
+) ;
+
+CREATE TABLE users(
+   id    VARCHAR(30) ,
+   name  VARCHAR(30),
+   password  VARCHAR(30)
+);
+
+INSERT INTO users(id,name,password) VALUES('wang','王耀光','wang');
+
+INSERT INTO user(name,password,age,sex,birthday) VALUES ('王耀光','wang',30,'男','2008-08-27') ;
+INSERT INTO user(name,password,age,sex,birthday) VALUES ('王耀光','wang',23,'女','2005-08-27') ;
+
+
+DELETE FROM user WHERE id=3 ;
+
+UPDATE user SET name='MLDN',age=5,birthday='2000-08-27' WHERE id=4 ;
+
+SELECT name,birthday FROM user ;
+
+SELECT * FROM user WHERE name LIKE '%m%' OR password LIKE '%m%' ;
+
+SELECT * FROM user WHERE name LIKE '%m%' OR password LIKE '%m%' LIMIT 10,5 ;
