@@ -14,16 +14,23 @@ public class Io_reader {
 	
 	public static void main(String[] args)throws IOException {
 		String path="E://my.txt";
-		inputstreamreader(path);
+		bufferreader(path);
 	}
 	/*
-	 * inputstream方式读取
+	 * bufferreader方式读取
 	 */
-	public static void inputstreamreader(String path) throws IOException{
+	public static void bufferreader(String path) throws IOException{
 		BufferedReader reader =new BufferedReader(new FileReader(new File(path)));
 		String string="";
 		while ((string=reader.readLine())!=null) {
 			System.out.println(string);
 		}
+	}
+	
+	/*
+	 * inputstream方式读取
+	 */
+	public static void inputstream(String path) throws IOException{
+			//inputstream方式的读取还需要借助bufferreader的方式进行读取
 	}
 }
