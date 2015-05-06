@@ -1,4 +1,4 @@
-package org.wang.ioDemo;
+package org.wang.io;
 
 import java.text.DateFormat;
 import java.text.ParseException;

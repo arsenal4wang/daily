@@ -3,6 +3,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="my"/>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="my_dao"/>
 	<classpathentry kind="lib" path="D:/Program Files/Java/mysql-connector-java-5.1.20-bin.jar"/>
 	<classpathentry kind="lib" path="E:/TDDOWNLOAD/JAVA/java_web_tools/common_jar/json_jar/commons-beanutils-1.7.0.jar"/>
 	<classpathentry kind="lib" path="E:/TDDOWNLOAD/JAVA/java_web_tools/common_jar/json_jar/commons-collections-3.2.1.jar"/>
