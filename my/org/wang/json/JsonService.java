@@ -5,7 +5,7 @@ import net.sf.json.JSONObject;
 public class JsonService {
 	public static JSONObject object=new JSONObject();
 	public Person getPerson() {
-		Person person=new Person(1000,"ÍõÒ«¹â", "ÄÐ");
+		Person person=new Person(1000,"ï¿½ï¿½Ò«ï¿½ï¿½", "ï¿½ï¿½");
 		return person;
 	}
 	public String createJsonObject(String key,Object value){
