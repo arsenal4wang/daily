@@ -136,7 +136,7 @@ public class MyFrame extends JFrame {
 		add(getJPanel2(), new Constraints(new Leading(359, 424, 12, 12), new Leading(247, 389, 10, 10)));
 		add(getJPanel0(), new Constraints(new Leading(8, 341, 12, 12), new Leading(8, 387, 10, 10)));
 		setJMenuBar(getJMenuBar0());
-		setSize(824, 665);
+		setSize(795, 665);
 	}
 
 	private JButton getJButton22() {
@@ -170,9 +170,8 @@ public class MyFrame extends JFrame {
 	private JLabel getJLabel11() {
 		if (jLabel11 == null) {
 			jLabel11 = new JLabel();
-			jLabel11.setText("j");
-			jLabel11.setForeground(Color.blue);
 			jLabel11.setFont(new Font("Serif", Font.BOLD, 16));
+			jLabel11.setForeground(Color.blue);
 		}
 		return jLabel11;
 	}
@@ -196,7 +195,6 @@ public class MyFrame extends JFrame {
 			jButton19 = new JButton();
 			jButton19.setText("⊔");//概念或
 			jButton19.addActionListener(new ActionListener() {
-	
 				public void actionPerformed(ActionEvent event) {
 					jButton19ActionActionPerformed(event);
 				}
@@ -388,7 +386,6 @@ public class MyFrame extends JFrame {
 			jPanel4 = new JPanel();
 			jPanel4.setBorder(BorderFactory.createTitledBorder(null, "KB", TitledBorder.LEADING, TitledBorder.DEFAULT_POSITION, null, null));
 			jPanel4.setLayout(new GroupLayout());
-			jPanel4.add(getJLabel9(), new Constraints(new Leading(7, 49, 10, 10), new Leading(6, 28, 10, 10)));
 			jPanel4.add(getJButton12(), new Constraints(new Leading(56, 78, 10, 10), new Leading(83, 12, 12)));
 			jPanel4.add(getJButton13(), new Constraints(new Leading(142, 69, 10, 10), new Leading(83, 12, 12)));
 			jPanel4.add(getJLabel10(), new Constraints(new Leading(7, 12, 12), new Leading(125, 10, 10)));
@@ -398,7 +395,8 @@ public class MyFrame extends JFrame {
 			jPanel4.add(getJButton20(), new Constraints(new Leading(153, 43, 10, 10), new Leading(43, 12, 12)));
 			jPanel4.add(getJButton21(), new Constraints(new Leading(198, 10, 10), new Leading(43, 12, 12)));
 			jPanel4.add(getJButton22(), new Constraints(new Leading(242, 52, 12, 12), new Leading(43, 12, 12)));
-			jPanel4.add(getJTextField4(), new Constraints(new Leading(58, 242, 10, 10), new Leading(6, 25, 12, 12)));
+			jPanel4.add(getJTextField4(), new Constraints(new Leading(58, 236, 12, 12), new Leading(6, 25, 12, 12)));
+			jPanel4.add(getJLabel9(), new Constraints(new Leading(3, 56, 10, 10), new Leading(3, 28, 12, 12)));
 		}
 		return jPanel4;
 	}
@@ -422,7 +420,6 @@ public class MyFrame extends JFrame {
 	private JTextArea getJTextArea1() {
 		if (jTextArea1 == null) {
 			jTextArea1 = new JTextArea();
-			jTextArea1.setText("    Waiting......");
 			jTextArea1.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		}
 		return jTextArea1;
@@ -545,7 +542,6 @@ public class MyFrame extends JFrame {
 	private JLabel getJLabel6() {
 		if (jLabel6 == null) {
 			jLabel6 = new JLabel();
-			jLabel6.setText("er");
 			jLabel6.setForeground(Color.blue);
 		}
 		return jLabel6;
@@ -690,8 +686,8 @@ public class MyFrame extends JFrame {
 	private JLabel getJLabel3() {
 		if (jLabel3 == null) {
 			jLabel3 = new JLabel();
-			jLabel3.setText("ABox：");
 			jLabel3.setFont(new Font("Serif", Font.PLAIN, 14));
+			jLabel3.setText("Props：");
 		}
 		return jLabel3;
 	}
@@ -699,8 +695,8 @@ public class MyFrame extends JFrame {
 	private JLabel getJLabel4() {
 		if (jLabel4 == null) {
 			jLabel4 = new JLabel();
-			jLabel4.setText("Input The CTL Formula：");
 			jLabel4.setFont(new Font("Serif", Font.PLAIN, 14));
+			jLabel4.setText("Input The DL-CTL Formula：");
 		}
 		return jLabel4;
 	}
@@ -974,7 +970,12 @@ public class MyFrame extends JFrame {
 		jTextField0.setText("");
 		jTextField1.setText("");
 		jTextField2.setText("");
-		stateList.clear();// 确保状态队列里没有之前的状态
+		stateList = null;
+		stateList = new ArrayList<State>();
+		//stateList.clear();// 确保状态队列里没有之前的状态
+		kripke.getStateSets().clear();
+		kripke.lists.clear();
+		kripke.FinalPath.clear();
 		kripke = new Kripke();
 	}
 
@@ -982,7 +983,8 @@ public class MyFrame extends JFrame {
 		if (stateNum != 0) {
 			long t = System.currentTimeMillis();
 			kripke.CreatLists(kripke.getStateSets());
-			kripke.getCurLuJin(0);
+//			kripke.getCurLuJin(0);
+			kripke.generatePath(kripke.getStateSets());
 			jTextArea0.setText(kripke.toString() + "\n"
 					+ "All paths in this model are：\n"
 					+ kripke.GetNonReapeatedPath());
@@ -1049,6 +1051,7 @@ public class MyFrame extends JFrame {
 	}
 
 	private void jButton4ActionActionPerformed(ActionEvent event) {
+		//原子公式之间的与关系
 		jTextField3.setText(showFormula("AND"));
 	}
 

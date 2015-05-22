@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class KB {
-	private ArrayList<String> ab;
 	private ArrayList<String> tb;
+	private ArrayList<String> ab;
 
 	public static void main(String[] args) {
 		KB kb = new KB();
@@ -13,6 +13,8 @@ public class KB {
 		kb.initTB("A,B,C=A ⊓ B,D=A ⊓ C,E=A ⊔ D");
 		// System.out.println(kb);//⊓ ⊔
 		// System.out.println(kb.isFormat("A(a),a,b"));
+		System.out.println("***");
+		System.out.println(kb);
 		System.out.println(kb.isConsistent(list, "A(a),C(b),D(c)"));// 初始化ABox
 		if (kb.isConsistent(list, "A(a),C(b),C(c),D(d),E(g)")) {
 			System.out.println(kb.getAllPossibleAssertions(kb.tb, kb.ab));
@@ -167,6 +169,7 @@ public class KB {
 			}
 		}
 		list.addAll(tb);
+		
 		System.out.println(this.tb.toString());
 	}
 

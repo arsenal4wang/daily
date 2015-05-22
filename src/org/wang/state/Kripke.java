@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.w3c.dom.ls.LSException;
+
+
 public class Kripke {
 
 	List<State> stateSets = new ArrayList<>();
@@ -64,6 +67,7 @@ public class Kripke {
 		for (int i = start; i < MaxJieDian; i++)
 			indexs[i] = 0;
 	}
+
 	/*
 	 * 递归查询程序
 	 */
@@ -71,6 +75,56 @@ public class Kripke {
 	// public static StringBuffer PathList = new StringBuffer();
 
 	public static List<List<String>> FinalPath = new ArrayList<>();
+
+	
+	public void generatePath(List<State> l) {
+		// 新增代码 czf
+		int[][] graph = new int[l.size()][l.size()];
+		for (int i = 0; i < graph.length; i++) {
+			for (int j = 0; j < graph[i].length; j++) {
+				graph[i][j] = -1;
+			}
+		}
+		for (int iii = 0; iii < l.size(); iii++) {
+			graph[iii][0] = -1;
+			List<String> sNodes = l.get(iii).getSuccessor();
+			for (int jjj = 0; jjj < sNodes.size(); jjj++) {
+				String snode = sNodes.get(jjj);
+				if (snode != null && !snode.equals("")) {
+					graph[iii][getIndex(snode, l)] = 1;
+				}
+			}
+		}
+		Graph.graph=graph;
+		for (int i = 0; i < graph.length; i++) {
+			Boolean flag = true;
+			for (int j = 0; j < graph[i].length; j++) {
+				if (graph[i][j] != -1) {
+					flag = false;
+				}
+			}
+			if (flag) {
+				Graph.getPaths(0, i, "s1", 0);// 从源点：0 到目点：3,初始路径："0" 初始和：0
+			}
+		}
+		
+		
+		for (String e : Graph.getRes())// 打印所有的结果
+		{
+			System.out.println(e);
+			List<String> templs = new ArrayList<>();	
+			String[] ss = e.split(" ");
+			for (int p = 0; p < ss.length; p++) {
+				templs.add(ss[p]);
+			}
+			System.out.println("templs为："+templs);
+			FinalPath.add(templs);
+			System.out.println("调用一次finalpath  个数为"+FinalPath.size());
+		}
+		System.out.println("调用一次finalpath");
+		Graph.getRes().clear();
+		// 新增代码 czf
+	}
 
 	public String getCurLuJin(int i) {
 		if (i == lists.size()) {
@@ -81,8 +135,7 @@ public class Kripke {
 				State tempState = find(tempStr);
 				if (!luJing.contains(tempStr))
 					luJing.add(tempStr);
-				// if (tempState!=null&&tempState.getSuccessor()!=null)
-				{
+				if (tempState != null && tempState.getSuccessor() != null) {
 					if (tempState.getSuccessor().size() == 1
 							&& tempState.getSuccessor().get(0).equals("")) {
 						// System.out.println("当前状态" + tempState.getName());
@@ -92,6 +145,7 @@ public class Kripke {
 				// PathList.append(tempStr + " ");
 			}
 			FinalPath.add(luJing);
+			System.out.println(luJing);
 			indexs[i - 1]++;
 			getCurLuJin(i - 1);
 		} else if (indexs[i] < lists.get(i).size()) {
@@ -107,7 +161,6 @@ public class Kripke {
 		}
 		return "";
 	}
-
 
 	@Override
 	public String toString() {
@@ -180,8 +233,8 @@ public class Kripke {
 
 	public static List<List<State>> pathList = new ArrayList<>();
 
-	public  List<List<State>> getStatePath() {// 将字符的状态序列转换成State类型的
-//		List<List<State>> pathList = new ArrayList<>();
+	public List<List<State>> getStatePath() {// 将字符的状态序列转换成State类型的
+	// List<List<State>> pathList = new ArrayList<>();
 		String temp = GetNonReapeatedPath();
 		pathList.clear();
 		String[] path = temp.split("\n");
@@ -199,8 +252,7 @@ public class Kripke {
 		}
 		return pathList;
 	}
-	
-	
+
 	/*
 	 * 测试上面函数的正确性
 	 */
@@ -222,15 +274,13 @@ public class Kripke {
 			StrPathList.add(list);
 		}
 		return StrPathList;
-		
+
 	}
-	
-	
-	
+
 	public String showPath() {
 		getStatePath();
 		StringBuffer stringBuffer = new StringBuffer();
-		Iterator<List<State>> iterator =pathList.iterator();
+		Iterator<List<State>> iterator = pathList.iterator();
 		Iterator<State> iterator2;
 		int i = 0;
 		while (iterator.hasNext()) {
@@ -266,21 +316,39 @@ public class Kripke {
 		State state2 = new State();
 		List<String> list2 = new ArrayList<String>();
 		state2.setName("s2");
-		list2.add("s3");
-		list2.add("s4");
+		list2.add("s5");
+		list2.add("s6");
 		state2.setSuccessor(list2);
+		state2.setProList(Prolist);
+		;
 
 		State state3 = new State();
 		List<String> list3 = new ArrayList<String>();
 		state3.setName("s3");
-		list3.add("s4");
+		list3.add("s6");
 		state3.setSuccessor(list3);
+		state3.setProList(Prolist);
 
 		State state4 = new State();
 		List<String> list4 = new ArrayList<String>();
 		state4.setName("s4");
 		list4.add("");
 		state4.setSuccessor(list4);
+		state4.setProList(Prolist);
+
+		State state5 = new State();
+		List<String> list5 = new ArrayList<String>();
+		state5.setName("s5");
+		list5.add("");
+		state5.setSuccessor(list5);
+		state5.setProList(Prolist);
+
+		State state6 = new State();
+		List<String> list6 = new ArrayList<String>();
+		state6.setName("s6");
+		list6.add("");
+		state6.setSuccessor(list6);
+		state6.setProList(Prolist);
 
 		Kripke kripke = new Kripke();
 		List<State> l = new ArrayList<State>();
@@ -288,12 +356,17 @@ public class Kripke {
 		l.add(state2);
 		l.add(state3);
 		l.add(state4);
+		l.add(state5);
+		l.add(state6);
 		kripke.setStateSets(l);
-		System.out.println(kripke.toString());
+
+		// System.out.println(kripke.toString());
 		System.out.println(kripke.toString1());
 		kripke.CreatLists(kripke.getStateSets());
 		System.out.println(lists);
 		System.out.println(kripke.getCurLuJin(0));
+		//kripke.generatePath(l);
+		System.out.println(FinalPath);
 		System.out.println("***************");
 		// kripke.getStatePath();
 		System.out.println(kripke.showPath());
@@ -303,5 +376,14 @@ public class Kripke {
 		// System.out.println(kripke.deleteString());
 		System.out.println(FinalPath.toString());
 		System.out.println("所有的路径为：\n" + kripke.GetNonReapeatedPath());
+	}
+
+	private static int getIndex(String str, List<State> ls) {
+		for (int i = 0; i < ls.size(); i++) {
+			if (ls.get(i).getName().equals(str)) {
+				return i;
+			}
+		}
+		return -1;
 	}
 }

@@ -1,13 +1,15 @@
 package org.wang.state;
 
+
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public class State {
-	private String name;
-	private List<String> Successor;// 状态的后继结点
-	private List<String> ProList;// 标记函数的集合 暂时还没有用到
+	private String name;//鐘舵?鍚?
+	private List<String> Successor;// 鐘舵?鐨勫悗缁х粨鐐?
+	private List<String> ProList;// 鏍囪鍑芥暟鐨勯泦鍚?鏆傛椂杩樻病鏈夌敤鍒?
 
 	public State(String name) {
 		this.name = name;
@@ -77,21 +79,25 @@ public class State {
 
 	public static void main(String[] args) {
 		State state = new State();
-		state.setName("s1");// 设置状态名字
+		state.setName("s1");// 璁剧疆鐘舵?鍚嶅瓧
 		List<String> list = new ArrayList<>();
 		list.add("s2");
 		list.add("s3");
 		list.add("s4");
 		list.add("s5");
+		
+		
 		List<String> Prolist = new ArrayList<>();
 		Prolist.add("a1");
 		Prolist.add("a2");
 		Prolist.add("a3");
 		state.setProList(Prolist);
 		state.setSuccessor(list);
-
+				
+		
+		
 		State state2 = new State();
-		state2.setName("s2");// 设置状态名字
+		state2.setName("s2");// 璁剧疆鐘舵?鍚嶅瓧
 		List<String> list2 = new ArrayList<>();
 		list2.add("s3");
 		list2.add("s4");

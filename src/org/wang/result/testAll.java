@@ -22,9 +22,10 @@ public class testAll {
 		for (String string2 : strings) {
 			System.out.println(string2);
 		}
+		checkFormula();
 	}
 
-	public static void show() {
+	public static void checkFormula() {
 		String formula = "EFaANDAGb";
 		String[] atom = formula.split("AND");
 		System.err.println(atom.toString());
