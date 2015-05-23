@@ -17,7 +17,7 @@ import org.dyno.visual.swing.layouts.GroupLayout;
 public class helpFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JTextArea jTextArea0;
+	private JTextArea jTextArea0;//
 	private JScrollPane jScrollPane0;
 	private static final String PREFERRED_LOOK_AND_FEEL = "javax.swing.plaf.metal.MetalLookAndFeel";
 	public helpFrame() {
