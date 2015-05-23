@@ -8,7 +8,7 @@ import com.wang.state.State;
 public class my_Utils {
 	public static List<List<String>> l = new ArrayList<>();
 	/*
-	 * 判断List间的包含关系
+	 * 判断List间的包含关系de dongxi
 	 */
 	public static boolean isSubList(List<String> list, List<String> list2) {
 		boolean flag = true;
