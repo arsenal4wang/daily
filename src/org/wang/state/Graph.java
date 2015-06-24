@@ -15,13 +15,14 @@ public class Graph {
 		{ -1, -1, -1, -1, -1, -1 },
 		{ -1, -1, -1, -1, -1, -1 } };
 
+
 	private static String[] noteNames = { "s1", "s2", "s3", "s4", "s5", "s6",
 			"s7", "s8", "s9", "s10" };
 
 	private static boolean[] hasFlag = new boolean[graph.length];
 	// true-表示该结点已访问过。false-表示还没有访问过。
 
-	private static ArrayList<String> res = new ArrayList<String>();
+	private static ArrayList<String> res = new ArrayList<>();
 
 	// 最后的所有的路径的结果。每一条路径的格式是如：0->2->1->3:7
 
